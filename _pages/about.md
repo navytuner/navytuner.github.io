@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
-## $ whoami
-
 Hi, I'm **Seongjun Hong**, also known as **navytuner**.
 
 I'm interested in building things and sharing my journey.

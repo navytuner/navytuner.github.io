@@ -3,40 +3,46 @@ layout: default
 title: Blog
 permalink: /blog/
 ---
-<div class="blog-header">
-  <h1 class="glitch" data-text="Blog">Blog</h1>
-  <p><span class="prompt">$</span> find ./posts -type f | sort -r</p>
-</div>
-
-{% assign categories = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
-{% if categories.size > 1 %}
-  <div class="category-filter">
-    <button class="category-pill active" data-category="all">all</button>
-    {% for cat in categories %}
-      {% if cat != "" %}
-        <button class="category-pill" data-category="{{ cat }}">{{ cat }}</button>
-      {% endif %}
-    {% endfor %}
+<div class="site-content">
+  <div class="section-header">
+    <h2 class="section-title">Blog</h2>
   </div>
-{% endif %}
 
-{% if site.posts.size > 0 %}
-  <div class="post-list">
-    {% for post in site.posts %}
-      <a href="{{ post.url | relative_url }}" class="post-item" data-category="{{ post.categories | first }}">
-        <div class="post-item-date">{{ post.date | date: "%Y-%m-%d" }}</div>
-        <div class="post-item-title">
-          {{ post.title }}
-          {% if post.categories.size > 0 %}
-            <span class="post-item-category">{{ post.categories | first }}</span>
-          {% endif %}
-        </div>
-        {% if post.excerpt %}
-          <div class="post-item-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</div>
+  {% assign categories = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
+  {% if categories.size > 1 %}
+    <div class="category-tabs">
+      <button class="category-tab active" data-category="all">All</button>
+      {% for cat in categories %}
+        {% if cat != "" %}
+          <button class="category-tab" data-category="{{ cat }}">{{ cat }}</button>
         {% endif %}
-      </a>
-    {% endfor %}
-  </div>
-{% else %}
-  <p style="color: var(--text-dim);">No posts yet. Check back soon.</p>
-{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if site.posts.size > 0 %}
+    <div class="post-list">
+      {% for post in site.posts %}
+        <a href="{{ post.url | relative_url }}" class="post-list-item" data-category="{{ post.categories | first }}">
+          <div class="post-list-body">
+            {% if post.categories.size > 0 %}
+              <div class="post-list-category">{{ post.categories | first }}</div>
+            {% endif %}
+            <div class="post-list-title">{{ post.title }}</div>
+            {% if post.excerpt %}
+              <div class="post-list-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</div>
+            {% endif %}
+            <div class="post-list-date">{{ post.date | date: "%Y.%m.%d" }}</div>
+          </div>
+          <div class="post-list-thumb">
+            {% if post.thumbnail %}
+              <img src="{{ post.thumbnail }}" alt="{{ post.title }}">
+            {% endif %}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">No posts yet.</div>
+  {% endif %}
+</div>

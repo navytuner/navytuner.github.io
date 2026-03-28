@@ -1,16 +1,15 @@
-// Category filter on blog page
 document.addEventListener('DOMContentLoaded', () => {
-  const pills = document.querySelectorAll('.category-pill');
-  const posts = document.querySelectorAll('.post-item');
+  const tabs = document.querySelectorAll('.category-tab');
+  const posts = document.querySelectorAll('.post-list-item');
 
-  if (pills.length === 0) return;
+  if (tabs.length === 0) return;
 
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      const category = pill.dataset.category;
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const category = tab.dataset.category;
 
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
       posts.forEach(post => {
         if (category === 'all' || post.dataset.category === category) {
