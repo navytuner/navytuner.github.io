@@ -22,6 +22,8 @@ include:
 
 collections_dir: ""
 
+future: true
+
 markdown: kramdown
 highlighter: rouge
 
