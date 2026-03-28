@@ -1,0 +1,15 @@
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="Home">
+      <span class="prompt">$</span> <span class="nav-title">navytuner</span><span class="cursor">_</span>
+    </a>
+    <div class="nav-links">
+      <a href="{{ '/blog' | relative_url }}" {% if page.url == '/blog/' %}class="active"{% endif %}>
+        <span class="nav-bracket">[</span>blog<span class="nav-bracket">]</span>
+      </a>
+      <a href="{{ '/about' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>
+        <span class="nav-bracket">[</span>about<span class="nav-bracket">]</span>
+      </a>
+    </div>
+  </div>
+</nav>

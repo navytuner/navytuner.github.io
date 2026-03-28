@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      {% if page.categories.size > 0 %}
+        <span class="post-category">{{ page.categories | first }}</span>
+      {% endif %}
+      {% if page.tags.size > 0 %}
+        <span class="post-tags">
+          {% for tag in page.tags %}
+            <span class="tag">#{{ tag }}</span>
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+    <h1 class="glitch" data-text="{{ page.title }}">{{ page.title }}</h1>
+  </header>
+  <div class="post-content">
+    {{ content }}
+  </div>
+  <footer class="post-footer">
+    <a href="{{ '/blog' | relative_url }}" class="back-link"><span class="prompt">$</span> cd ../blog</a>
+  </footer>
+</article>

@@ -1,0 +1,50 @@
+---
+layout: default
+title: Home
+---
+<section class="home-hero">
+  <div class="terminal-window">
+    <div class="terminal-bar">
+      <span class="terminal-dot"></span>
+      <span class="terminal-dot"></span>
+      <span class="terminal-dot"></span>
+      <span class="terminal-title">~/navytuner</span>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-line"><span class="prompt">$</span> whoami</div>
+      <div class="terminal-line"><span class="val">Seongjun Hong</span> <span class="comment">// aka navytuner</span></div>
+      <div class="terminal-line"><span class="prompt">$</span> cat interests.txt</div>
+      <div class="terminal-line"><span class="key">projects</span> <span class="key">life</span> <span class="key">thoughts</span></div>
+      <div class="terminal-line"><span class="prompt">$</span> ls ./posts</div>
+      <div class="terminal-line"><span class="comment">// loading recent entries...</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="home-recent">
+  <h2 class="section-title">Recent Posts</h2>
+
+  {% if site.posts.size > 0 %}
+    <div class="post-list">
+      {% for post in site.posts limit:5 %}
+        <a href="{{ post.url | relative_url }}" class="post-item" data-category="{{ post.categories | first }}">
+          <div class="post-item-date">{{ post.date | date: "%Y-%m-%d" }}</div>
+          <div class="post-item-title">
+            {{ post.title }}
+            {% if post.categories.size > 0 %}
+              <span class="post-item-category">{{ post.categories | first }}</span>
+            {% endif %}
+          </div>
+          {% if post.excerpt %}
+            <div class="post-item-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+    <a href="{{ '/blog' | relative_url }}" class="view-all">
+      <span class="prompt">$</span> ls --all <span class="arrow">-></span>
+    </a>
+  {% else %}
+    <p style="color: var(--text-dim);">No posts yet. Stay tuned.</p>
+  {% endif %}
+</section>
