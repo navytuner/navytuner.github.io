@@ -48,4 +48,40 @@ title: Home
   {% else %}
     <div class="empty-state">No posts yet.</div>
   {% endif %}
+
+  {% if site.data.contributions.size > 0 %}
+    <div class="section-header" style="margin-top: 2.5rem;">
+      <h2 class="section-title">Open Source Contributions</h2>
+      {% if site.data.contributions.size > 3 %}
+        <a href="{{ '/contributions' | relative_url }}" class="section-link">View all &rarr;</a>
+      {% endif %}
+    </div>
+
+    <div class="post-grid">
+      {% for contrib in site.data.contributions limit:3 %}
+        <a href="{{ contrib.url }}" class="contrib-card" target="_blank" rel="noopener">
+          <div class="contrib-card-header">
+            <span class="contrib-project">{{ contrib.project }}{% if contrib.pr %} #{{ contrib.pr }}{% endif %}</span>
+            {% if contrib.status %}
+              <span class="contrib-status contrib-status--{{ contrib.status }}">{{ contrib.status }}</span>
+            {% endif %}
+          </div>
+          <div class="contrib-card-body">
+            <div class="contrib-card-title">{{ contrib.title }}</div>
+            {% if contrib.description %}
+              <div class="contrib-card-desc">{{ contrib.description }}</div>
+            {% endif %}
+            {% if contrib.tags %}
+              <div class="contrib-tags">
+                {% for tag in contrib.tags %}
+                  <span class="contrib-tag">{{ tag }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <div class="post-card-date">{{ contrib.date | date: "%Y.%m.%d" }}</div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
 </div>

@@ -1,0 +1,21 @@
+- project: pwndbg
+  pr: 1234
+  title: "Placeholder: Fix heap command output"
+  description: "Replace with your actual PR title and description."
+  url: https://github.com/pwndbg/pwndbg/pull/1234
+  date: 2026-03-01
+  tags:
+    - gdb
+    - python
+  status: merged
+
+- project: pwndbg
+  pr: 1230
+  title: "Placeholder: Improve disassembly display"
+  description: "Replace with your actual PR title and description."
+  url: https://github.com/pwndbg/pwndbg/pull/1230
+  date: 2026-02-15
+  tags:
+    - gdb
+    - python
+  status: merged
